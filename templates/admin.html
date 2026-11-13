@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | Glow & Grace Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body">
+
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="admin-logo">
+        <a href="{{ url_for('index') }}" target="_blank">Glow <span>&</span> Grace</a>
+        <span class="admin-logo-badge">Admin</span>
+      </div>
+      <nav class="admin-nav">
+        <a href="{{ url_for('admin_dashboard') }}" class="admin-nav-link active">📋 Appointments</a>
+        <a href="{{ url_for('admin_reviews') }}" class="admin-nav-link">⭐ Reviews &amp; Moderation {% if pending_reviews_count %}<span class="admin-logo-badge" style="background:#a45860; color:#fff; border-color:#a45860;">{{ pending_reviews_count }}</span>{% endif %}</a>
+        <a href="{{ url_for('index') }}" target="_blank" class="admin-nav-link">🌐 View Website</a>
+        <a href="{{ url_for('admin_logout') }}" class="admin-nav-link danger">🚪 Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-container">
+
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div style="margin-bottom:1.5rem;">
+        {% for category, message in messages %}
+        <div class="admin-alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <!-- Page Title -->
+      <div class="admin-page-header">
+        <div>
+          <h1 class="admin-page-title">Appointment Requests</h1>
+          <p class="admin-page-sub">{{ total }} total appointment request{{ 's' if total != 1 else '' }}</p>
+        </div>
+        <a href="{{ url_for('appointment') }}" target="_blank" class="btn btn-primary btn-sm">+ New Booking Page</a>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="admin-summary-row">
+        <div class="summary-card total">
+          <div class="sc-number">{{ counts.total }}</div>
+          <div class="sc-label">Total</div>
+        </div>
+        <div class="summary-card pending">
+          <div class="sc-number">{{ counts.pending }}</div>
+          <div class="sc-label">⏳ Pending</div>
+        </div>
+        <div class="summary-card confirmed">
+          <div class="sc-number">{{ counts.confirmed }}</div>
+          <div class="sc-label">✅ Confirmed</div>
+        </div>
+        <div class="summary-card completed">
+          <div class="sc-number">{{ counts.completed }}</div>
+          <div class="sc-label">🌟 Completed</div>
+        </div>
+        <div class="summary-card cancelled">
+          <div class="sc-number">{{ counts.cancelled }}</div>
+          <div class="sc-label">❌ Cancelled</div>
+        </div>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <form method="GET" class="admin-filter-bar">
+        <input type="text" name="q" value="{{ search }}" placeholder="Search by name, phone, service, or reference…" class="admin-search-input" />
+        <select name="status" class="admin-select">
+          <option value="">All Statuses</option>
+          {% for s, meta in status_meta.items() %}
+          <option value="{{ s }}" {% if status_filter == s %}selected{% endif %}>{{ meta.icon }} {{ meta.label }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        {% if search or status_filter %}
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary btn-sm">Clear</a>
+        {% endif %}
+      </form>
+
+      <!-- Appointments Table -->
+      {% if appointments %}
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Reference</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Date &amp; Time</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Received</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for appt in appointments %}
+            {% set meta = status_meta.get(appt['status'], status_meta['pending']) %}
+            <tr class="appt-row {{ appt['status'] }}">
+              <td>
+                <span class="ref-pill">{{ appt['ref_number'] }}</span>
+              </td>
+              <td>
+                <div class="customer-cell">
+                  <strong>{{ appt['name'] }}</strong>
+                  <span>{{ appt['phone'] }}</span>
+                  {% if appt['email'] %}<span>{{ appt['email'] }}</span>{% endif %}
+                </div>
+              </td>
+              <td>
+                <div class="service-cell">
+                  <strong>{{ appt['service'] }}</strong>
+                  <span>{{ appt['category'] }} • {{ appt['duration'] }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="datetime-cell">
+                  <strong>{{ appt['appt_date'] }}</strong>
+                  <span>{{ appt['appt_time'] }}</span>
+                </div>
+              </td>
+              <td class="price-cell">{{ appt['price'] }}</td>
+              <td>
+                <span class="status-badge {{ appt['status'] }}" style="background:{{ meta.bg }}; color:{{ meta.color }};">
+                  {{ meta.icon }} {{ meta.label }}
+                </span>
+              </td>
+              <td class="date-cell">{{ appt['created_at'][:10] }}</td>
+              <td>
+                <a href="{{ url_for('admin_appointment_detail', appt_id=appt['id']) }}" class="btn btn-secondary btn-xs">View</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      {% if total_pages > 1 %}
+      <div class="admin-pagination">
+        {% if page > 1 %}
+        <a href="{{ url_for('admin_dashboard', q=search, status=status_filter, page=page-1) }}" class="page-btn">← Prev</a>
+        {% endif %}
+        <span class="page-info">Page {{ page }} of {{ total_pages }}</span>
+        {% if page < total_pages %}
+        <a href="{{ url_for('admin_dashboard', q=search, status=status_filter, page=page+1) }}" class="page-btn">Next →</a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% else %}
+      <div class="admin-empty-state">
+        <div class="empty-icon">📋</div>
+        <h3>No Appointments Found</h3>
+        <p>{% if search or status_filter %}No results match your search. Try different terms.{% else %}No appointment requests have been submitted yet.{% endif %}</p>
+        {% if search or status_filter %}
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary btn-sm">View All</a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+    </div>
+  </main>
+
+</body>
+</html>
+

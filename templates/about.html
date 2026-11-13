@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+{% block title %}About Us | Glow &amp; Grace Salon{% endblock %}
+{% block meta_description %}Learn about Glow &amp; Grace Salon, our mission, vision, beauty expertise, hygienic standards, and dedication to personalized customer care.{% endblock %}
+
+{% block content %}
+<!-- Page Hero Banner -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="section-eyebrow">About Glow &amp; Grace</span>
+    <h1 class="page-title">Personal Care, Modern Elegance</h1>
+    <p class="page-subtitle">A welcoming beauty sanctuary where professional techniques, high-quality products, and dedicated customer care come together.</p>
+  </div>
+</header>
+
+<!-- 1. OUR STORY -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="about-split-grid">
+      <div class="about-text-content">
+        <span class="section-eyebrow gold">Our Story</span>
+        <h2>A Beauty Destination Designed for You</h2>
+        <p>
+          Glow &amp; Grace Salon is a beauty and personal care destination where customers can enjoy professional beauty services in a relaxing and welcoming environment. We created this space to offer a balanced blend of contemporary beauty trends and warm, personalized hospitality.
+        </p>
+        <p>
+          Our daily focus revolves around thoughtful personal care, close attention to evolving styling methods, and an unwavering commitment to customer satisfaction. We take the time to understand individual preferences so that every guest leaves feeling renewed, radiant, and valued.
+        </p>
+        <p>
+          Whether you are stopping by for regular grooming, refreshing your everyday style, or preparing for a landmark celebration, Glow &amp; Grace provides the attentive care and peaceful atmosphere you deserve.
+        </p>
+        <div style="margin-top: 2rem;">
+          <a href="{{ url_for('services') }}" class="btn btn-secondary">
+            Explore Our Services
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-image-wrapper">
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-2.jpg') }}" 
+          alt="Glow &amp; Grace Salon peaceful interior and styling station" 
+          class="about-featured-img"
+          loading="eager"
+        />
+        <div class="about-badge-card">
+          <div class="badge-title">Glow &amp; Grace</div>
+          <div class="badge-sub">Dedicated to personal care, comfort, and personalized service.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. ABOUT OUR SALON -->
+<section class="section-padding bg-beige">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow sage">Inside Our Space</span>
+      <h2 class="section-title">About Our Salon</h2>
+      <p class="section-lead">Every detail of Glow &amp; Grace is arranged to ensure your time with us is comfortable, hygienic, and personalized to your individual expectations.</p>
+    </div>
+
+    <div class="salon-highlights-grid">
+      <div class="highlight-box">
+        <h4>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          Relaxing Atmosphere
+        </h4>
+        <p>Soft lighting, comfortable seating, and a calm, quiet ambiance allow you to unwind and take a well-deserved break from your busy daily routine.</p>
+      </div>
+
+      <div class="highlight-box">
+        <h4>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          Professional Approach
+        </h4>
+        <p>Our team works with patience, precision, and courtesy. We listen carefully, explain each step, and offer clear guidance suited to your style.</p>
+      </div>
+
+      <div class="highlight-box">
+        <h4>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage-700)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Rigorous Hygiene Standards
+        </h4>
+        <p>Cleanliness is essential to our practice. Tools are thoroughly sanitized between sessions, stations are refreshed continually, and single-use essentials are prioritized.</p>
+      </div>
+
+      <div class="highlight-box">
+        <h4>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          Quality Beauty Products
+        </h4>
+        <p>We carefully select tested, dependable hair, skin, and nail products formulated to nourish your body, protect your hair structure, and deliver long-lasting results.</p>
+      </div>
+    </div>
+
+    <!-- Salon Visual Atmosphere Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem;">
+      <figure style="margin: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--color-gold-border);">
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-3.jpg') }}" 
+          alt="Peaceful wash and scalp spa area" 
+          style="width: 100%; height: 260px; object-fit: cover;"
+          loading="lazy"
+        />
+        <figcaption style="padding: 1rem 1.25rem; background: var(--color-white); font-size: 0.85rem; color: var(--color-charcoal-700); text-align: center;">
+          <em>Illustrative imagery:</em> Dedicated wash suites designed for quiet relaxation
+        </figcaption>
+      </figure>
+
+      <figure style="margin: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--color-gold-border);">
+        <img 
+          src="{{ url_for('static', filename='images/gallery/facial-skincare-2.jpg') }}" 
+          alt="Gentle facial skincare and lymphatic massage" 
+          style="width: 100%; height: 260px; object-fit: cover;"
+          loading="lazy"
+        />
+        <figcaption style="padding: 1rem 1.25rem; background: var(--color-white); font-size: 0.85rem; color: var(--color-charcoal-700); text-align: center;">
+          <em>Illustrative imagery:</em> Gentle personal care and custom facial techniques
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 3. OUR MISSION & 4. OUR VISION -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">Guiding Principles</span>
+      <h2 class="section-title">Our Purpose &amp; Direction</h2>
+      <p class="section-lead">The values that steer every customer interaction, service standard, and creative solution we provide.</p>
+    </div>
+
+    <div class="mission-vision-grid">
+      <!-- 3. OUR MISSION -->
+      <article class="statement-card mission">
+        <div class="statement-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="section-eyebrow gold" style="margin-bottom: 0.5rem;">Core Purpose</span>
+        <h3 class="statement-title">Our Mission</h3>
+        <p class="statement-text">
+          Our mission is to help customers feel confident, beautiful and comfortable through quality beauty services and personalized care.
+        </p>
+      </article>
+
+      <!-- 4. OUR VISION -->
+      <article class="statement-card vision">
+        <div class="statement-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <span class="section-eyebrow sage" style="margin-bottom: 0.5rem;">Future Outlook</span>
+        <h3 class="statement-title">Our Vision</h3>
+        <p class="statement-text">
+          Our vision is to become a trusted beauty destination known for excellent customer service, creativity, quality and customer satisfaction.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. WHY CHOOSE US? (8 ATTRACTIVE FEATURE CARDS) -->
+<section class="section-padding bg-beige">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">The Glow &amp; Grace Advantage</span>
+      <h2 class="section-title">Why Choose Us?</h2>
+      <p class="section-lead">We strive to make every visit enjoyable, reliable, and tailored to what matters most to you.</p>
+    </div>
+
+    <div class="why-choose-grid">
+      <!-- Card 1: Professional beauty services -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3 class="feature-title">Professional Beauty Services</h3>
+        <p class="feature-text">Skilled application across hair styling, skincare, nails, and grooming, delivered with professional care and precision.</p>
+      </div>
+
+      <!-- Card 2: Personalized consultations -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="feature-title">Personalized Consultations</h3>
+        <p class="feature-text">We take the time to discuss your goals, preferences, and lifestyle before recommending any treatment or style.</p>
+      </div>
+
+      <!-- Card 3: Quality beauty products -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h3 class="feature-title">Quality Beauty Products</h3>
+        <p class="feature-text">Formulated to protect your hair and skin, our products are carefully vetted for gentle application and dependable results.</p>
+      </div>
+
+      <!-- Card 4: Clean and hygienic environment -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">Clean &amp; Hygienic Environment</h3>
+        <p class="feature-text">High sanitization standards across all stations, tools, and linens to ensure your safety, comfort, and peace of mind.</p>
+      </div>
+
+      <!-- Card 5: Modern beauty techniques -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3 class="feature-title">Modern Beauty Techniques</h3>
+        <p class="feature-text">We keep up with current methods in hair colouring, precision cutting, skin care routines, and contemporary nail aesthetics.</p>
+      </div>
+
+      <!-- Card 6: Friendly customer service -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="feature-title">Friendly Customer Service</h3>
+        <p class="feature-text">A warm, attentive team that respects your time, values your comfort, and makes you feel right at home from arrival to departure.</p>
+      </div>
+
+      <!-- Card 7: Affordable service options -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <h3 class="feature-title">Affordable Service Options</h3>
+        <p class="feature-text">Clear, transparent pricing and versatile service packages designed to deliver excellent quality without hidden costs.</p>
+      </div>
+
+      <!-- Card 8: Relaxing salon experience -->
+      <div class="feature-box">
+        <div class="feature-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <h3 class="feature-title">Relaxing Salon Experience</h3>
+        <p class="feature-text">A calm, unhurried space where you can sit back, enjoy a quiet moment, and let us take care of your beauty needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. OUR EXPERTISE -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow sage">Comprehensive Services</span>
+      <h2 class="section-title">Our Expertise</h2>
+      <p class="section-lead">From head-to-toe beauty rituals to specialized occasion styling, our portfolio covers every facet of personal care.</p>
+    </div>
+
+    <div class="expertise-grid">
+      <!-- Haircare & Styling -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><path d="M4 4v16"/><path d="M8 4v16"/><path d="M12 4v16"/><path d="M16 4v16"/><path d="M20 4v16"/></svg>
+          Haircare &amp; Colour
+        </h3>
+        <p>Custom haircuts, blow-drys, root touch-ups, full multidimensional colouring, highlights, balayage, and deep-conditioning hair treatments.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Haircuts</span>
+          <span class="expertise-tag">Styling</span>
+          <span class="expertise-tag">Colour</span>
+          <span class="expertise-tag">Balayage</span>
+        </div>
+      </div>
+
+      <!-- Skincare & Facials -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage-700)" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          Skincare &amp; Facials
+        </h3>
+        <p>Targeted facial therapies, pore deep-cleansing, hydration masks, gentle exfoliation, and rejuvenating massage tailored to your skin type.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Deep Cleansing</span>
+          <span class="expertise-tag">Facials</span>
+          <span class="expertise-tag">Hydration</span>
+          <span class="expertise-tag">Glow Care</span>
+        </div>
+      </div>
+
+      <!-- Makeup & Bridal Beauty -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-blush-700)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Makeup &amp; Bridal Beauty
+        </h3>
+        <p>Natural daytime makeup, evening glam, and comprehensive bridal packages including pre-wedding trials and styling for your special moments.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Bridal Packages</span>
+          <span class="expertise-tag">Occasion Makeup</span>
+          <span class="expertise-tag">Trials</span>
+        </div>
+      </div>
+
+      <!-- Manicure, Pedicure & Nail Art -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          Manicure, Pedicure &amp; Nail Art
+        </h3>
+        <p>Essential cuticle care, hand and foot scrubs, relaxing massages, durable polishes, and custom minimalist nail art designed to your taste.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Manicure</span>
+          <span class="expertise-tag">Pedicure</span>
+          <span class="expertise-tag">Nail Art</span>
+          <span class="expertise-tag">Hand Care</span>
+        </div>
+      </div>
+
+      <!-- Waxing & Threading -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-gold-500)" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          Waxing &amp; Threading
+        </h3>
+        <p>Precise eyebrow shaping, gentle facial threading, and professional body waxing performed with care to minimize irritation and maintain smooth skin.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Eyebrow Threading</span>
+          <span class="expertise-tag">Face &amp; Body Waxing</span>
+          <span class="expertise-tag">Shaping</span>
+        </div>
+      </div>
+
+      <!-- Grooming & Personal Care -->
+      <div class="expertise-card">
+        <h3>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--color-sage-700)" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Grooming &amp; Wellness
+        </h3>
+        <p>Personal grooming solutions for women and men, scalp massages, restorative hair baths, and customized routines to keep you looking your best.</p>
+        <div class="expertise-tag-list">
+          <span class="expertise-tag">Scalp Massage</span>
+          <span class="expertise-tag">Personal Grooming</span>
+          <span class="expertise-tag">Hair Baths</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. CUSTOMER EXPERIENCE -->
+<section class="section-padding bg-beige">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">The Journey</span>
+      <h2 class="section-title">The Customer Experience</h2>
+      <p class="section-lead">From your first step through our doors to your final styling check, here is what you can expect during every visit.</p>
+    </div>
+
+    <div class="journey-grid">
+      <!-- Step 1 -->
+      <div class="journey-step-card">
+        <div class="journey-step-number">01</div>
+        <h3 class="journey-step-title">Warm Welcome</h3>
+        <p class="journey-step-text">You are greeted with genuine hospitality into a clean, calm, and pleasant environment designed to help you relax immediately.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="journey-step-card">
+        <div class="journey-step-number">02</div>
+        <h3 class="journey-step-title">Personalized Consultation</h3>
+        <p class="journey-step-text">We listen to your wishes, discuss your style and maintenance preferences, and answer any questions before beginning.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="journey-step-card">
+        <div class="journey-step-number">03</div>
+        <h3 class="journey-step-title">Guided &amp; Skilled Care</h3>
+        <p class="journey-step-text">Our professionals guide you towards the most suitable services and perform your treatments using gentle, modern techniques.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="journey-step-card">
+        <div class="journey-step-number">04</div>
+        <h3 class="journey-step-title">Finishing &amp; Aftercare</h3>
+        <p class="journey-step-text">We complete your look with final styling checks and share helpful product and maintenance advice so your results last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CALL TO ACTION -->
+<section class="cta-banner-section">
+  <div class="container cta-banner-inner">
+    <span class="section-eyebrow gold">Join Us Today</span>
+    <h2>Your Beauty, Our Passion</h2>
+    <p>Whether you're looking for a quick refresh or an immersive beauty treatment, our team is ready to welcome you with attentive, personalized care.</p>
+    <div class="cta-banner-buttons">
+      <a href="{{ url_for('services') }}" class="btn btn-secondary">
+        Explore Services
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ url_for('appointment') }}" class="btn btn-primary">
+        Book an Appointment
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

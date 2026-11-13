@@ -1,0 +1,632 @@
+{% extends "base.html" %}
+{% block title %}Glow &amp; Grace | Luxury Beauty Salon &amp; Personal Care Sanctuary{% endblock %}
+{% block meta_description %}Step into a world of beauty, relaxation and self-care at Glow &amp; Grace Salon. Explore our professional haircare, skincare, makeup, bridal, and nail rituals.{% endblock %}
+
+{% block content %}
+<!-- ========================================================================
+     1. HERO SECTION
+     ======================================================================== -->
+<section class="hero-premium">
+  <div class="container hero-grid">
+    <div class="hero-text-content">
+      <div class="hero-badge-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Premier Salon &amp; Wellness Sanctuary</span>
+      </div>
+      
+      <h1 class="hero-headline">
+        Discover Your Beauty. <em>Experience Your Glow.</em>
+      </h1>
+      
+      <p class="hero-description">
+        Step into a world of beauty, relaxation and self-care. At Glow &amp; Grace Salon, we bring together personalized beauty services and modern styling to help you look and feel your best.
+      </p>
+
+      <div class="hero-actions">
+        <a href="{{ url_for('appointment') }}" class="btn btn-primary">
+          Book Your Appointment
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="{{ url_for('services') }}" class="btn btn-secondary">
+          Explore Our Services
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Trust & Standards Stats -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">100<span>%</span></div>
+          <div class="stat-label">Personalized Care</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4.9<span>★</span></div>
+          <div class="stat-label">Guest Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100<span>%</span></div>
+          <div class="stat-label">Hygienic Standards</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Photography Visual -->
+    <div class="hero-visual">
+      <div class="hero-image-frame">
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-1.jpg') }}" 
+          alt="Glow &amp; Grace modern beauty salon interior" 
+          class="hero-image"
+          loading="eager"
+        />
+      </div>
+      <div class="hero-floating-card">
+        <div class="floating-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="floating-title">Bespoke Experience</div>
+          <div class="floating-sub">One-on-one personalized consultations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     2. ABOUT US PREVIEW
+     ======================================================================== -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="about-split-grid" style="margin-bottom: 0;">
+      <div class="about-text-content">
+        <span class="section-eyebrow gold">About Glow &amp; Grace</span>
+        <h2>A Sanctuary of Personal Care &amp; Modern Style</h2>
+        <p>
+          At Glow &amp; Grace Salon, we believe self-care should be unhurried, comfortable, and tailored to you. Our boutique salon is designed as a peaceful haven where professional care, modern beauty techniques, and genuine hospitality come together.
+        </p>
+        <p>
+          From the moment you enter, you are welcomed with personalized attention, clean and sanitized facilities, and dependable products formulated to nurture your hair, skin, and nails.
+        </p>
+        <div style="margin-top: 2rem;">
+          <a href="{{ url_for('about') }}" class="btn btn-secondary">
+            Read More About Us
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="about-image-wrapper">
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-2.jpg') }}" 
+          alt="Glow &amp; Grace calm salon lounge and styling space" 
+          class="about-featured-img"
+          loading="lazy"
+        />
+        <div class="about-badge-card">
+          <div class="badge-title">Glow &amp; Grace</div>
+          <div class="badge-sub">Dedicated to personal care, comfort, and personalized service.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     3. OUR SERVICES (6 ATTRACTIVE CATEGORY CARDS)
+     ======================================================================== -->
+<section class="section-padding bg-beige">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">Service Offerings</span>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-lead">Explore our comprehensive beauty offerings, each delivered with skilled artistry, premium products, and attentive care.</p>
+    </div>
+
+    <div class="category-service-grid">
+      <!-- Card 1: Haircare -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/haircut-styling-1.jpg') }}" 
+            alt="Haircare, styling and haircuts" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow gold" style="margin-bottom: 0.35rem;">Hair Artistry</span>
+          <h3>Haircare</h3>
+          <p>Precision haircuts, blow-drys, hair spa therapies, smoothening, and dimensional hair colouring customized to your aesthetic.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Haircare
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 2: Skincare -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/facial-skincare-1.jpg') }}" 
+            alt="Skincare and facial treatments" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow sage" style="margin-bottom: 0.35rem;">Skin &amp; Glow</span>
+          <h3>Skincare</h3>
+          <p>Gentle deep pore cleanups, nourishing fruit facials, gold radiance rituals, and intensive hydration therapies for lasting glow.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Skincare
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 3: Makeup -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/bridal-makeup-2.jpg') }}" 
+            alt="Party and event makeup artistry" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow blush" style="margin-bottom: 0.35rem;">Event Glamour</span>
+          <h3>Makeup</h3>
+          <p>Flawless party makeup, engagement makeovers, and custom event hairstyling designed to highlight your natural facial contours.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Makeup
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 4: Bridal Beauty -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/bridal-makeup-1.jpg') }}" 
+            alt="Bridal beauty makeover and hairstyle" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow gold" style="margin-bottom: 0.35rem;">Wedding Suites</span>
+          <h3>Bridal Beauty</h3>
+          <p>Comprehensive luxury bridal packages including pre-wedding skin prep, trial consultations, HD makeup, and intricate styling.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Bridal Beauty
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 5: Nail Care -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/nail-art-1.jpg') }}" 
+            alt="Manicure, pedicure and nail art" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow blush" style="margin-bottom: 0.35rem;">Nail Couture</span>
+          <h3>Nail Care</h3>
+          <p>Pampering spa manicures, relaxing foot pedicures, durable long-wear gel polishes, and custom minimalist nail art creations.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Nail Care
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Card 6: Waxing -->
+      <article class="category-service-card">
+        <div class="category-service-img-wrapper">
+          <img 
+            src="{{ url_for('static', filename='images/gallery/facial-skincare-2.jpg') }}" 
+            alt="Gentle waxing and eyebrow threading" 
+            class="category-service-img" 
+            loading="lazy"
+          />
+        </div>
+        <div class="category-service-body">
+          <span class="section-eyebrow sage" style="margin-bottom: 0.35rem;">Gentle Grooming</span>
+          <h3>Waxing &amp; Threading</h3>
+          <p>Sensitive-skin body waxing, precise eyebrow threading, and clean facial hair grooming performed with hygiene and comfort.</p>
+          <a href="{{ url_for('services') }}" class="btn btn-outline-gold btn-sm">
+            Explore Waxing
+            <svg class="btn-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="text-center" style="margin-top: 3.5rem;">
+      <a href="{{ url_for('services') }}" class="btn btn-secondary">
+        View All 28 Services with Pricing
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     4. SPECIAL OFFERS
+     ======================================================================== -->
+<section class="section-padding bg-ivory" id="special-offers">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">Featured Privileges</span>
+      <h2 class="section-title">Special Offers</h2>
+      <p class="section-lead">Enjoy verified promotional pricing on our most popular rituals. Transparent rates in Indian Rupees (₹) with clear savings.</p>
+    </div>
+
+    <div class="offers-grid">
+      {% for offer in special_offers %}
+      <article class="offer-card">
+        <div class="offer-card-badge">{{ offer.discount_percent }}% OFF</div>
+        <div class="offer-card-header">
+          <span class="offer-discount">{{ offer.offer_price_formatted }}</span>
+          <span class="price-original" style="font-size: 1.05rem; margin-bottom: 0.5rem; display: block;">Standard Price: {{ offer.original_price_formatted }}</span>
+          <h3 class="offer-title">{{ offer.name }}</h3>
+        </div>
+        <p class="offer-description">{{ offer.description }}</p>
+        
+        <div class="offer-details">
+          <div class="offer-code-box">
+            <span class="code-label">Category:</span>
+            <strong style="color: var(--color-charcoal-800); font-size: 0.88rem;">{{ offer.category }}</strong>
+          </div>
+          <span class="offer-expiry">⏱ {{ offer.duration }}</span>
+        </div>
+
+        <div class="offer-card-footer">
+          <a href="{{ url_for('appointment', service=offer.name) }}" class="btn btn-primary btn-block">
+            Book Offer &bull; Save {{ offer.savings_formatted }}
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Seasonal Deals Banner -->
+    <div class="vip-banner" style="margin-top: 1rem;">
+      <div class="vip-content">
+        <span class="section-eyebrow gold">Curated Packages</span>
+        <h3 class="vip-title">Looking for Packages &amp; Promo Codes?</h3>
+        <p class="vip-text">Browse our dedicated seasonal packages including our New Client Welcome Offer and Bridal Party Suites.</p>
+      </div>
+      <div class="vip-action">
+        <a href="{{ url_for('offers') }}" class="btn btn-gold">View All Offers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     5. WHY CHOOSE US?
+     ======================================================================== -->
+<section class="section-padding bg-beige">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow sage">The Glow &amp; Grace Standard</span>
+      <h2 class="section-title">Why Choose Us?</h2>
+      <p class="section-lead">We hold ourselves to high hospitality and technical standards so that every visit is dependable, restful, and gratifying.</p>
+    </div>
+
+    <div class="pillars-5-grid">
+      <!-- 1. Professional Care -->
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3 class="pillar-title">Professional Care</h3>
+        <p class="pillar-text">Attentive stylists and aestheticians dedicated to technical precision and unhurried service.</p>
+      </div>
+
+      <!-- 2. Personalized Services -->
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="pillar-title">Personalized Services</h3>
+        <p class="pillar-text">One-on-one consultations before every treatment to tailor every cut, colour, and skin ritual to you.</p>
+      </div>
+
+      <!-- 3. Hygiene -->
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="pillar-title">Hygiene Standards</h3>
+        <p class="pillar-text">Strict sterilization of instruments, sanitized styling stations, and single-use essentials.</p>
+      </div>
+
+      <!-- 4. Quality Products -->
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <h3 class="pillar-title">Quality Products</h3>
+        <p class="pillar-text">Carefully selected, gentle, and tested beauty formulations that protect hair and skin health.</p>
+      </div>
+
+      <!-- 5. Customer Satisfaction -->
+      <div class="pillar-card">
+        <div class="pillar-icon-box">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3 class="pillar-title">Customer Satisfaction</h3>
+        <p class="pillar-text">Our primary focus is ensuring you feel comfortable, beautiful, and completely satisfied with your results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     6. OUR GALLERY (6 BEAUTIFUL PHOTOGRAPHS)
+     ======================================================================== -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">Visual Showcase</span>
+      <h2 class="section-title">Our Gallery</h2>
+      <p class="section-lead">A visual preview of our salon environment, precision hairstyles, glowing skin results, and artistic detail.</p>
+    </div>
+
+    <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <!-- Image 1: Salon Interior -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Salon Interior</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-1.jpg') }}" 
+          alt="Modern minimalist beauty salon with warm wooden accents" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Salon Interior</span>
+          <div class="gallery-caption">Minimalist Styling Stations &amp; Ambiance</div>
+        </figcaption>
+      </figure>
+
+      <!-- Image 2: Haircuts & Styling -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Haircuts &amp; Styling</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/haircut-styling-2.jpg') }}" 
+          alt="Professional stylist texturizing flowing long layered hair" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Hair Artistry</span>
+          <div class="gallery-caption">Feathered Layers &amp; Weightless Movement</div>
+        </figcaption>
+      </figure>
+
+      <!-- Image 3: Hair Colour -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Hair Colour</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/hair-colour-1.jpg') }}" 
+          alt="Sun-kissed dimensional honey balayage" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Colour &amp; Highlights</span>
+          <div class="gallery-caption">Sun-Kissed Honey Balayage Artistry</div>
+        </figcaption>
+      </figure>
+
+      <!-- Image 4: Skincare & Facials -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Skincare</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/facial-skincare-1.jpg') }}" 
+          alt="Botanical clay mask application during spa facial" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Skin &amp; Glow</span>
+          <div class="gallery-caption">Organic Botanical Rejuvenation Facial</div>
+        </figcaption>
+      </figure>
+
+      <!-- Image 5: Bridal Beauty -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Bridal Beauty</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/bridal-makeup-1.jpg') }}" 
+          alt="Couture bridal glam and glowing complexion" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Bridal &amp; Makeup</span>
+          <div class="gallery-caption">Couture Bridal Glamour &amp; Radiant Base</div>
+        </figcaption>
+      </figure>
+
+      <!-- Image 6: Nail Couture -->
+      <figure class="gallery-item" style="height: 290px;">
+        <span class="gallery-item-badge">Nail Couture</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/nail-art-1.jpg') }}" 
+          alt="Minimalist nude nails with champagne gold foil leaf accents" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Nail Art</span>
+          <div class="gallery-caption">Champagne Foil Accent Velvet Nails</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="text-center" style="margin-top: 3.5rem;">
+      <a href="{{ url_for('gallery') }}" class="btn btn-secondary">
+        View All Gallery (24 Photos)
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     7. CUSTOMER REVIEWS
+     ======================================================================== -->
+<section class="section-padding bg-blush">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow">Client Reflections</span>
+      <h2 class="section-title">Customer Reviews</h2>
+      <p class="section-lead">Here is what our guests appreciate about our attentive service, gentle care, and welcoming atmosphere.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      {% for r in reviews %}
+      <div class="testimonial-card">
+        <div class="review-card-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <div class="star-rating" style="color: #d4af37; font-size: 1.1rem; letter-spacing: 0.05em;">
+            {% for i in range(r.rating) %}★{% endfor %}
+            {% for i in range(5 - r.rating) %}☆{% endfor %}
+          </div>
+          <span class="review-date-badge" style="font-size: 0.75rem; color: var(--color-charcoal-400);">{{ r.review_date }}</span>
+        </div>
+        <p class="testimonial-quote">“{{ r.comment }}”</p>
+        <div class="testimonial-client">
+          <div class="client-avatar">{{ r.author_name[:2].upper() }}</div>
+          <div class="client-info">
+            <h4>{{ r.author_name }}</h4>
+            <div class="client-service">{{ r.service }}</div>
+          </div>
+        </div>
+        {% if r.is_sample %}
+        <div class="review-sample-badge" style="margin-top: 0.75rem; font-size: 0.72rem; color: var(--color-gold-600); background: var(--color-beige-100); padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block;">
+          <span>Sample Demonstration Review</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Review Management Note and Link to All Reviews -->
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 2.5rem; gap: 1rem;">
+      <a href="{{ url_for('reviews') }}" class="btn btn-secondary">
+        Read All Verified Reviews &amp; Share Feedback
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="review-management-note">
+        <span>ℹ️ Note: These are sample customer testimonials for development. Live customer reviews submitted on our website are moderated prior to publication.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     8. BOOK YOUR APPOINTMENT
+     ======================================================================== -->
+<section class="cta-banner-section">
+  <div class="container cta-banner-inner">
+    <span class="section-eyebrow gold">Your Sanctuary Awaits</span>
+    <h2>Book Your Appointment</h2>
+    <p>Step away from daily rush and let our skilled professionals care for your hair, skin, and beauty needs. Online reservation takes less than two minutes.</p>
+    
+    <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; font-size: 0.9rem; color: var(--color-charcoal-700);">
+      <span>✨ <strong>Complimentary</strong> Consultation</span>
+      <span>⏱ <strong>Unhurried</strong> Personal Care</span>
+      <span>🌿 <strong>Tested</strong> Quality Products</span>
+    </div>
+
+    <div class="cta-banner-buttons">
+      <a href="{{ url_for('appointment') }}" class="btn btn-primary">
+        Book an Appointment
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="{{ url_for('services') }}" class="btn btn-secondary">
+        Browse Service Menu
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     9. CONTACT AND LOCATION
+     ======================================================================== -->
+<section class="section-padding bg-ivory" id="contact-location">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="section-eyebrow gold">Visit Our Space</span>
+      <h2 class="section-title">Contact &amp; Location</h2>
+      <p class="section-lead">Find us easily or connect with our concierge team. All business details below can be tailored to your salon location.</p>
+    </div>
+
+    <div class="home-contact-grid">
+      <!-- Location & Address -->
+      <div class="home-contact-card">
+        <div class="home-contact-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Salon Location</h3>
+        <p><strong>123 Beauty Ave, Citytown</strong><br>Convenient street parking &amp; valet assistance available.</p>
+      </div>
+
+      <!-- Direct Phone -->
+      <div class="home-contact-card">
+        <div class="home-contact-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>Telephone Concierge</h3>
+        <p>Call for reservations &amp; same-day bookings:<br><a href="tel:+1234567890" style="color: var(--color-gold-600); font-weight: 700;">+1 (234) 567-890</a></p>
+      </div>
+
+      <!-- Opening Hours -->
+      <div class="home-contact-card">
+        <div class="home-contact-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Opening Hours</h3>
+        <p>
+          Mon – Fri: 9:00 AM – 8:00 PM<br>
+          Saturday: 9:00 AM – 7:00 PM<br>
+          Sunday: 10:00 AM – 5:00 PM
+        </p>
+      </div>
+
+      <!-- Online Concierge & Social -->
+      <div class="home-contact-card">
+        <div class="home-contact-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>Email &amp; Social</h3>
+        <p>
+          <a href="mailto:concierge@glowandgracesalon.com" style="color: var(--color-charcoal-800);">concierge@glowandgracesalon.com</a><br>
+          <span style="font-size: 0.85rem; color: var(--color-charcoal-400);">Follow us on Instagram &amp; Facebook</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 3rem;">
+      <a href="{{ url_for('contact') }}" class="btn btn-secondary">
+        Send Us a Message
+        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

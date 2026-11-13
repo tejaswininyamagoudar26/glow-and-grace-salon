@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Glow &amp; Grace | Luxury Beauty Salon &amp; Spa{% endblock %}</title>
+  <meta name="description"
+    content="{% block meta_description %}Experience world-class hair artistry, botanical skin rituals, and bespoke beauty care in our serene sanctuary.{% endblock %}">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <!-- Skip to Main Content Link for Keyboard Accessibility -->
+  <a href="#main-content" class="skip-to-content-link">Skip to main content</a>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-notice-bar" aria-label="Announcement">
+    <span>✨ Complimentary Beverage &amp; Consultation with Every Signature Service</span>
+    <span>Call Concierge: <a href="tel:+1234567890">+1 (234) 567-890</a></span>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="{{ url_for('index') }}" class="logo-wrapper" aria-label="Glow and Grace Home">
+        <span class="logo">Glow <span>&amp;</span> Grace</span>
+        <span class="logo-tagline">Luxury Salon &amp; Spa</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="{{ url_for('index') }}"
+              class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+          <li><a href="{{ url_for('about') }}"
+              class="nav-link {% if request.endpoint == 'about' %}active{% endif %}">About Us</a></li>
+          <li><a href="{{ url_for('services') }}"
+              class="nav-link {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
+          <li><a href="{{ url_for('gallery') }}"
+              class="nav-link {% if request.endpoint == 'gallery' %}active{% endif %}">Gallery</a></li>
+          <li><a href="{{ url_for('transformations') }}"
+              class="nav-link {% if request.endpoint == 'transformations' %}active{% endif %}">Transformations</a></li>
+          <li><a href="{{ url_for('reviews') }}"
+              class="nav-link {% if request.endpoint == 'reviews' %}active{% endif %}">Reviews</a></li>
+          <li><a href="{{ url_for('offers') }}"
+              class="nav-link {% if request.endpoint == 'offers' %}active{% endif %}">Offers</a></li>
+          <li><a href="{{ url_for('appointment') }}"
+              class="nav-link {% if request.endpoint == 'appointment' %}active{% endif %}">Appointment</a></li>
+          <li><a href="{{ url_for('contact') }}"
+              class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+          <li class="mobile-book-btn">
+            <a href="{{ url_for('appointment') }}" class="btn btn-primary btn-block">Book an Appointment</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Action & Mobile Toggle -->
+      <div class="header-cta">
+        <a href="{{ url_for('appointment') }}" class="btn btn-primary btn-sm">Book an Appointment</a>
+        <button class="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Flash Notifications -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <section class="flash-container" aria-live="polite">
+    <div class="container">
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">
+        <p>{{ message }}</p>
+        <button type="button" class="flash-close-btn" aria-label="Close notification">&times;</button>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endwith %}
+
+  <!-- Main Content -->
+  <main class="site-main" id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Professional Footer -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <!-- Col 1: Brand & Bio -->
+      <div class="footer-brand">
+        <a href="{{ url_for('index') }}" class="footer-logo">Glow <span>&amp;</span> Grace</a>
+        <span class="footer-brand-tagline">Haute Coiffure &amp; Aesthetics</span>
+        <p class="footer-about">
+          A dedicated sanctuary where timeless artistry meets personalized wellness. We believe true beauty radiates
+          from tailored care, calm surroundings, and mindful craftsmanship.
+        </p>
+        <div class="footer-social-links" aria-label="Social media channels">
+          <a href="{{ salon_config.social.instagram }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="{{ salon_config.social.facebook }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook" title="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+            </svg>
+          </a>
+          <a href="{{ salon_config.social.pinterest }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Pinterest" title="Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="9" x2="12" y2="21" />
+              <path d="M8 12a4 4 0 1 1 8 0c0 3-2 6-4 9" />
+            </svg>
+          </a>
+          <a href="{{ salon_config.social.tiktok }}" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok" title="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+            </svg>
+          </a>
+          <!-- WhatsApp Quick Icon in footer -->
+          <a href="https://wa.me/{{ salon_config.whatsapp_number }}?text={{ default_whatsapp_msg|urlencode }}" target="_blank" rel="noopener noreferrer" class="social-btn whatsapp-social" aria-label="WhatsApp" title="Chat on WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.697c.969.529 1.961.855 2.806.855h.005c3.18 0 5.767-2.586 5.768-5.766 0-3.18-2.587-5.767-5.773-5.767zm7.553 5.765c-.002 4.161-3.388 7.545-7.551 7.545-.002 0-.005 0-.007 0-.002 0-.005 0-.007 0-1.28 0-2.536-.345-3.633-1.001l-4.047 1.062 1.082-3.945c-.722-1.157-1.103-2.496-1.102-3.87 0-4.161 3.387-7.545 7.551-7.545 2.015 0 3.908.784 5.334 2.209s2.21 3.32 2.209 5.335z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation Links -->
+      <div>
+        <h4 class="footer-heading">Explore</h4>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('index') }}" class="footer-link">Home</a></li>
+          <li><a href="{{ url_for('about') }}" class="footer-link">About Our Salon</a></li>
+          <li><a href="{{ url_for('services') }}" class="footer-link">Services &amp; Pricing</a></li>
+          <li><a href="{{ url_for('transformations') }}" class="footer-link">Transformations (Before/After)</a></li>
+          <li><a href="{{ url_for('reviews') }}" class="footer-link">Guest Reviews</a></li>
+          <li><a href="{{ url_for('gallery') }}" class="footer-link">Visual Gallery</a></li>
+          <li><a href="{{ url_for('offers') }}" class="footer-link">Offers &amp; Packages</a></li>
+          <li><a href="{{ url_for('appointment') }}" class="footer-link">Book Appointment</a></li>
+          <li><a href="{{ url_for('contact') }}" class="footer-link">Contact &amp; Location</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Signature Rituals -->
+      <div>
+        <h4 class="footer-heading">Services</h4>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('services') }}" class="footer-link">Signature Hair Styling</a></li>
+          <li><a href="{{ url_for('services') }}" class="footer-link">Bespoke Hair Colouring</a></li>
+          <li><a href="{{ url_for('services') }}" class="footer-link">Botanical Facial Care</a></li>
+          <li><a href="{{ url_for('services') }}" class="footer-link">Luxury Hand &amp; Foot Care</a></li>
+          <li><a href="{{ url_for('offers') }}" class="footer-link">Bridal Glamour Suites</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Salon Hours & Location (Editable Details) -->
+      <div>
+        <h4 class="footer-heading">Visit &amp; Contact</h4>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>{{ salon_config.address_line1 }} (Editable)</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <a href="tel:{{ salon_config.phone_clean }}">{{ salon_config.phone }}</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <a href="mailto:{{ salon_config.email }}">{{ salon_config.email }}</a>
+          </div>
+        </div>
+
+        <div class="footer-hours-box">
+          <div class="footer-hour-line">
+            <span>Monday – Friday:</span>
+            <strong>9:00 AM – 8:00 PM</strong>
+          </div>
+          <div class="footer-hour-line">
+            <span>Saturday:</span>
+            <strong>9:00 AM – 7:00 PM</strong>
+          </div>
+          <div class="footer-hour-line">
+            <span>Sunday:</span>
+            <strong>10:00 AM – 5:00 PM</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="container footer-bottom">
+      <p>© 2026 Glow &amp; Grace Salon. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="{{ url_for('contact') }}">Privacy Policy</a>
+        <a href="{{ url_for('contact') }}">Terms of Service</a>
+        <a href="{{ url_for('appointment') }}">Reserve Online</a>
+        <a href="{{ url_for('admin_login') }}" style="opacity: 0.5;">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top of page" title="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- Floating WhatsApp Widget (Visible across all pages) -->
+  <aside class="floating-whatsapp-widget" aria-label="WhatsApp Concierge">
+    <a href="https://wa.me/{{ salon_config.whatsapp_number }}?text={{ default_whatsapp_msg|urlencode }}" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-fab" 
+       id="floating-whatsapp-btn"
+       aria-label="Chat with Glow &amp; Grace on WhatsApp">
+      <div class="fab-icon-box">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+      </div>
+      <span class="fab-tooltip">Chat with Concierge</span>
+    </a>
+  </aside>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

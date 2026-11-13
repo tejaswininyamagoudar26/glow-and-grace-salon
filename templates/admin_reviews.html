@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage Reviews &amp; Moderation | Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body">
+
+  <!-- Admin Header -->
+  <header class="admin-header">
+    <div class="admin-header-inner">
+      <div class="admin-logo">
+        <a href="{{ url_for('index') }}" target="_blank">Glow <span>&</span> Grace</a>
+        <span class="admin-logo-badge">Admin</span>
+      </div>
+      <nav class="admin-nav">
+        <a href="{{ url_for('admin_dashboard') }}" class="admin-nav-link">📋 Appointments</a>
+        <a href="{{ url_for('admin_reviews') }}" class="admin-nav-link active">⭐ Moderation &amp; Reviews ({{ counts.pending }})</a>
+        <a href="{{ url_for('index') }}" target="_blank" class="admin-nav-link">🌐 View Website</a>
+        <a href="{{ url_for('admin_logout') }}" class="admin-nav-link danger">🚪 Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-container">
+
+      <!-- Flash messages -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div style="margin-bottom:1.5rem;">
+        {% for category, message in messages %}
+        <div class="admin-alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      <!-- Page Title -->
+      <div class="admin-page-header">
+        <div>
+          <h1 class="admin-page-title">Customer Review Moderation</h1>
+          <p class="admin-page-sub">Review community testimonials, approve genuine client feedback, or reject spam.</p>
+        </div>
+        <a href="{{ url_for('reviews') }}" target="_blank" class="btn btn-secondary btn-sm">View Public Reviews Page ↗</a>
+      </div>
+
+      <!-- Review Metrics Cards -->
+      <div class="admin-summary-row">
+        <a href="{{ url_for('admin_reviews') }}" class="summary-card total" style="text-decoration:none;">
+          <div class="sc-number">{{ counts.all }}</div>
+          <div class="sc-label">Total Reviews</div>
+        </a>
+        <a href="{{ url_for('admin_reviews', status='pending') }}" class="summary-card pending" style="text-decoration:none;">
+          <div class="sc-number" style="color: #c5a059;">{{ counts.pending }}</div>
+          <div class="sc-label">⏳ Pending Moderation</div>
+        </a>
+        <a href="{{ url_for('admin_reviews', status='approved') }}" class="summary-card confirmed" style="text-decoration:none;">
+          <div class="sc-number" style="color: #5a8f7b;">{{ counts.approved }}</div>
+          <div class="sc-label">✅ Live / Approved</div>
+        </a>
+        <a href="{{ url_for('admin_reviews', status='rejected') }}" class="summary-card cancelled" style="text-decoration:none;">
+          <div class="sc-number" style="color: #a45860;">{{ counts.rejected }}</div>
+          <div class="sc-label">❌ Rejected</div>
+        </a>
+      </div>
+
+      <!-- Reviews Moderation Table -->
+      {% if reviews %}
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Rating</th>
+              <th>Comment</th>
+              <th>Date</th>
+              <th>Origin</th>
+              <th>Status</th>
+              <th>Moderation Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in reviews %}
+            <tr>
+              <td style="font-family: monospace; font-weight: 700;">#{{ r['id'] }}</td>
+              <td>
+                <div class="customer-cell">
+                  <strong>{{ r['author_name'] }}</strong>
+                </div>
+              </td>
+              <td>
+                <span style="font-weight: 500; font-size: 0.9rem;">{{ r['service'] }}</span>
+              </td>
+              <td>
+                <span style="color: #d4af37; font-size: 1rem; letter-spacing: 0.05em;">
+                  {% for i in range(r['rating']) %}★{% endfor %}
+                </span>
+              </td>
+              <td style="max-width: 320px;">
+                <p style="font-size: 0.88rem; color: #2c2927; line-height: 1.5; margin: 0;">“{{ r['comment'] }}”</p>
+              </td>
+              <td class="date-cell">{{ r['review_date'] }}</td>
+              <td>
+                {% if r['is_sample'] %}
+                  <span class="ref-pill" style="font-size: 0.72rem; background: #faf7f2;">Sample</span>
+                {% else %}
+                  <span class="ref-pill" style="font-size: 0.72rem; background: #eef5f2; border-color: #5a8f7b; color: #2e5948;">Guest</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if r['status'] == 'approved' %}
+                  <span class="status-badge" style="background:#eef5f2; color:#5a8f7b;">Approved</span>
+                {% elif r['status'] == 'pending' %}
+                  <span class="status-badge" style="background:#fdf6e9; color:#c5a059;">Pending</span>
+                {% else %}
+                  <span class="status-badge" style="background:#fdf0f1; color:#a45860;">Rejected</span>
+                {% endif %}
+              </td>
+              <td>
+                <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+                  {% if r['status'] != 'approved' %}
+                  <form method="POST" action="{{ url_for('admin_update_review', review_id=r['id']) }}">
+                    <input type="hidden" name="status" value="approved">
+                    <button type="submit" class="btn btn-primary btn-xs" title="Approve and publish to public website">Approve</button>
+                  </form>
+                  {% endif %}
+
+                  {% if r['status'] != 'rejected' %}
+                  <form method="POST" action="{{ url_for('admin_update_review', review_id=r['id']) }}">
+                    <input type="hidden" name="status" value="rejected">
+                    <button type="submit" class="btn btn-secondary btn-xs" style="color: #a45860;" title="Reject review">Reject</button>
+                  </form>
+                  {% endif %}
+
+                  <form method="POST" action="{{ url_for('admin_delete_review', review_id=r['id']) }}" onsubmit="return confirm('Permanently delete review #{{ r['id'] }}?');">
+                    <button type="submit" class="btn btn-secondary btn-xs" style="color: #857e78; border-color: transparent;" title="Delete">🗑</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="admin-empty-state">
+        <div class="empty-icon">⭐</div>
+        <h3>No Reviews Found</h3>
+        <p>No reviews match this filter.</p>
+        <a href="{{ url_for('admin_reviews') }}" class="btn btn-secondary btn-sm">View All Reviews</a>
+      </div>
+      {% endif %}
+
+    </div>
+  </main>
+
+</body>
+</html>
+

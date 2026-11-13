@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% block title %}Book an Appointment | Glow & Grace Salon{% endblock %}
+{% block meta_description %}Book a beauty appointment at Glow & Grace Salon. Choose your service, preferred date and time. We will confirm your slot within 2 hours.{% endblock %}
+
+{% block content %}
+<!-- Page Hero -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="section-eyebrow">Reservations</span>
+    <h1 class="page-title">Book Your Appointment</h1>
+    <p class="page-subtitle">Select a service, choose your preferred date and time, and our team will confirm your slot within 2 business hours.</p>
+  </div>
+</header>
+
+<!-- Appointment Section -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="form-layout-grid">
+
+      <!-- ======= BOOKING FORM ======= -->
+      <div class="form-card">
+        <div class="form-header">
+          <span class="section-eyebrow gold">Step-by-Step Booking</span>
+          <h2>Your Appointment Details</h2>
+          <p>Fields marked with <span style="color:var(--color-blush-700);">*</span> are required.</p>
+        </div>
+
+        <!-- Global error summary -->
+        {% if errors %}
+        <div class="form-error-summary" role="alert">
+          <strong>⚠ Please correct the following before submitting:</strong>
+          <ul>
+            {% for field, msg in errors.items() %}
+            <li>{{ msg }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('appointment') }}" class="appointment-form-inner" id="booking-form" novalidate>
+
+          <!-- STEP 1: PERSONAL DETAILS -->
+          <div class="form-step-label">
+            <span class="step-number">1</span> Personal Details
+          </div>
+
+          <div class="form-row">
+            <div class="form-group {% if errors.name %}has-error{% endif %}">
+              <label for="name">Full Name <span class="req-star">*</span></label>
+              <input type="text" id="name" name="name"
+                     value="{{ form_data.get('name', '') }}"
+                     placeholder="e.g. Priya Sharma"
+                     autocomplete="name" required />
+              {% if errors.name %}
+              <span class="form-error-msg">{{ errors.name }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group {% if errors.phone %}has-error{% endif %}">
+              <label for="phone">Mobile Number <span class="req-star">*</span></label>
+              <input type="tel" id="phone" name="phone"
+                     value="{{ form_data.get('phone', '') }}"
+                     placeholder="e.g. 9876543210"
+                     autocomplete="tel" required />
+              <span class="form-help">10-digit Indian mobile number</span>
+              {% if errors.phone %}
+              <span class="form-error-msg">{{ errors.phone }}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group {% if errors.email %}has-error{% endif %}">
+              <label for="email">Email Address <span class="optional-tag">(Optional)</span></label>
+              <input type="email" id="email" name="email"
+                     value="{{ form_data.get('email', '') }}"
+                     placeholder="e.g. priya@example.com"
+                     autocomplete="email" />
+              <span class="form-help">We will send your booking reference here</span>
+              {% if errors.email %}
+              <span class="form-error-msg">{{ errors.email }}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- STEP 2: SELECT SERVICE -->
+          <div class="form-step-label">
+            <span class="step-number">2</span> Choose Your Service
+          </div>
+
+          <div class="form-row">
+            <div class="form-group {% if errors.category %}has-error{% endif %}">
+              <label for="category">Service Category <span class="req-star">*</span></label>
+              <select id="category" name="category" required>
+                <option value="" disabled {% if not form_data.get('category') %}selected{% endif %}>-- Select a category --</option>
+                {% for cat in categories %}
+                <option value="{{ cat.name }}" {% if form_data.get('category') == cat.name %}selected{% endif %}>
+                  {{ cat.name }}
+                </option>
+                {% endfor %}
+              </select>
+              {% if errors.category %}
+              <span class="form-error-msg">{{ errors.category }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group {% if errors.service %}has-error{% endif %}">
+              <label for="service">Specific Service <span class="req-star">*</span></label>
+              <select id="service" name="service" required disabled>
+                <option value="" disabled selected>-- Select category first --</option>
+              </select>
+              {% if errors.service %}
+              <span class="form-error-msg">{{ errors.service }}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Service Preview Card (shown after selection) -->
+          <div id="service-preview-card" class="service-preview-card" style="display:none;">
+            <div class="spc-icon">✨</div>
+            <div class="spc-info">
+              <div class="spc-name" id="spc-name">—</div>
+              <div class="spc-meta">
+                <span id="spc-price" class="spc-price">—</span>
+                <span class="spc-sep">•</span>
+                <span id="spc-duration" class="spc-duration">—</span>
+              </div>
+              <div id="spc-desc" class="spc-desc">—</div>
+            </div>
+            <div id="spc-discount" class="spc-discount" style="display:none;"></div>
+          </div>
+
+          <!-- STEP 3: DATE & TIME -->
+          <div class="form-step-label">
+            <span class="step-number">3</span> Preferred Date &amp; Time
+          </div>
+
+          <div class="note-banner">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Your selected date and time is a <strong>requested slot</strong>. Our team will confirm availability and contact you within 2 hours.
+          </div>
+
+          <div class="form-row">
+            <div class="form-group {% if errors.date %}has-error{% endif %}">
+              <label for="date">Preferred Date <span class="req-star">*</span></label>
+              <input type="date" id="date" name="date"
+                     value="{{ form_data.get('date', '') }}" required />
+              {% if errors.date %}
+              <span class="form-error-msg">{{ errors.date }}</span>
+              {% endif %}
+            </div>
+
+            <div class="form-group {% if errors.time %}has-error{% endif %}">
+              <label for="time">Preferred Time <span class="req-star">*</span></label>
+              <select id="time" name="time" required>
+                <option value="" disabled {% if not form_data.get('time') %}selected{% endif %}>-- Choose a time slot --</option>
+                {% set slots = [
+                  ('09:00','9:00 AM'), ('09:30','9:30 AM'), ('10:00','10:00 AM'),
+                  ('10:30','10:30 AM'), ('11:00','11:00 AM'), ('11:30','11:30 AM'),
+                  ('12:00','12:00 PM'), ('12:30','12:30 PM'), ('13:00','1:00 PM'),
+                  ('13:30','1:30 PM'), ('14:00','2:00 PM'), ('14:30','2:30 PM'),
+                  ('15:00','3:00 PM'), ('15:30','3:30 PM'), ('16:00','4:00 PM'),
+                  ('16:30','4:30 PM'), ('17:00','5:00 PM'), ('17:30','5:30 PM'),
+                  ('18:00','6:00 PM'), ('18:30','6:30 PM'), ('19:00','7:00 PM'),
+                  ('19:30','7:30 PM'), ('20:00','8:00 PM')
+                ] %}
+                {% for val, label in slots %}
+                <option value="{{ val }}" {% if form_data.get('time') == val %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+              {% if errors.time %}
+              <span class="form-error-msg">{{ errors.time }}</span>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- STEP 4: MESSAGE -->
+          <div class="form-step-label">
+            <span class="step-number">4</span> Additional Information
+          </div>
+
+          <div class="form-group">
+            <label for="message">Special Requests or Notes <span class="optional-tag">(Optional)</span></label>
+            <textarea id="message" name="message" rows="3"
+              placeholder="Tell us about allergies, previous treatment history, skin sensitivities, or any special requirements…">{{ form_data.get('message', '') }}</textarea>
+            <span class="form-help">We will use this to personalize your experience</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submit-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Submit Booking Request
+          </button>
+
+          <p class="form-privacy-note">
+            Your information is kept confidential and used only to manage your appointment.
+          </p>
+        </form>
+      </div>
+
+      <!-- ======= SIDEBAR ======= -->
+      <aside class="appointment-sidebar">
+        <div class="info-card">
+          <h3>How It Works</h3>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>1. Fill the Form</h4>
+              <p>Choose your service, preferred date and time, and submit your request.</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>2. We Call You Back</h4>
+              <p>Our team will confirm availability and contact you within 2 business hours.</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>3. Appointment Confirmed</h4>
+              <p>Once confirmed, simply arrive at your slot and enjoy a personalized beauty experience.</p>
+            </div>
+          </div>
+
+          <div class="info-hours-list">
+            <h4>Salon Opening Hours</h4>
+            <div class="hour-row">
+              <span>Mon – Fri</span>
+              <span>9:00 AM – 8:00 PM</span>
+            </div>
+            <div class="hour-row">
+              <span>Saturday</span>
+              <span>9:00 AM – 7:00 PM</span>
+            </div>
+            <div class="hour-row">
+              <span>Sunday</span>
+              <span>10:00 AM – 5:00 PM</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <p style="font-size: 0.85rem; color: var(--color-charcoal-600); margin-bottom: 0.5rem;">Need same-day or bridal bookings?</p>
+            <a href="tel:+1234567890" class="btn btn-outline-gold btn-sm btn-block">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call: +1 (234) 567-890
+            </a>
+          </div>
+        </div>
+
+        <!-- Cancellation Policy -->
+        <div class="info-card" style="margin-top: 1.5rem;">
+          <h3>Good to Know</h3>
+          <ul class="policy-list">
+            <li>
+              <span class="policy-icon">🛡️</span>
+              <span>Your slot is <strong>requested</strong>, not auto-confirmed. We will verify and confirm.</span>
+            </li>
+            <li>
+              <span class="policy-icon">⏰</span>
+              <span>Please arrive <strong>5–10 minutes early</strong> for a relaxed, unhurried experience.</span>
+            </li>
+            <li>
+              <span class="policy-icon">📞</span>
+              <span>To reschedule or cancel, please give us at least <strong>24 hours notice</strong>.</span>
+            </li>
+            <li>
+              <span class="policy-icon">✨</span>
+              <span>A complimentary <strong>consultation</strong> is included with every service booking.</span>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- Inline JSON data for JS (service lookup) -->
+<script id="services-data" type="application/json">
+{{ services | tojson }}
+</script>
+{% endblock %}

@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+{% block title %}Visual Gallery | Glow &amp; Grace Salon{% endblock %}
+{% block meta_description %}Explore our curated visual gallery showcasing salon interiors, precision haircuts, balayage hair colour, botanical facials, nail art, and bridal transformations.{% endblock %}
+
+{% block content %}
+<!-- Page Hero Banner -->
+<header class="page-hero">
+  <div class="container page-hero-inner">
+    <span class="section-eyebrow">Visual Portfolio</span>
+    <h1 class="page-title">The Gallery</h1>
+    <p class="page-subtitle">A visual celebration of our salon environment, hair artistry, skin rituals, nail design, and occasion transformations.</p>
+  </div>
+</header>
+
+<!-- Gallery Section -->
+<section class="section-padding bg-ivory">
+  <div class="container">
+    
+    <!-- Illustrative Notice Note -->
+    <div class="gallery-disclaimer-note">
+      <span>✨ Illustrative beauty and salon imagery representing our aesthetic approach, high-care standards, and relaxing environment.</span>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs" id="gallery-filter-tabs" role="tablist" aria-label="Gallery category filters" style="margin-bottom: 3.5rem;">
+      <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Works (24)</button>
+      <button class="filter-btn" data-filter="salon-interior" role="tab" aria-selected="false">Salon Interior</button>
+      <button class="filter-btn" data-filter="haircuts-styling" role="tab" aria-selected="false">Haircuts &amp; Styling</button>
+      <button class="filter-btn" data-filter="hair-colour" role="tab" aria-selected="false">Hair Colour &amp; Highlights</button>
+      <button class="filter-btn" data-filter="skincare-facials" role="tab" aria-selected="false">Skincare &amp; Facials</button>
+      <button class="filter-btn" data-filter="bridal-makeup" role="tab" aria-selected="false">Bridal &amp; Makeup</button>
+      <button class="filter-btn" data-filter="manicure-pedicure" role="tab" aria-selected="false">Manicure &amp; Pedicure</button>
+      <button class="filter-btn" data-filter="nail-art" role="tab" aria-selected="false">Nail Art</button>
+      <button class="filter-btn" data-filter="transformations" role="tab" aria-selected="false">Transformations</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="salon-gallery-grid">
+
+      <!-- 1. Salon Interior (3 Images) -->
+      <figure class="gallery-item" data-category="salon-interior">
+        <span class="gallery-item-badge">Salon Interior</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-1.jpg') }}" 
+          alt="Modern minimalist beauty salon with warm wooden accents and styling mirrors" 
+          class="gallery-image"
+          loading="eager"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Salon Interior</span>
+          <div class="gallery-caption">Minimalist Styling Stations &amp; Warm Ambiance</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="salon-interior">
+        <span class="gallery-item-badge">Salon Interior</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-2.jpg') }}" 
+          alt="Boutique beauty salon lounge with serene chairs and soft ambient lighting" 
+          class="gallery-image"
+          loading="eager"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Salon Interior</span>
+          <div class="gallery-caption">Private Guest Lounge &amp; Refreshment Bar</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="salon-interior">
+        <span class="gallery-item-badge">Salon Interior</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/salon-interior-3.jpg') }}" 
+          alt="Tranquil salon shampoo and scalp spa area" 
+          class="gallery-image"
+          loading="eager"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Salon Interior</span>
+          <div class="gallery-caption">Peaceful Scalp Spa &amp; Wash Suite</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 2. Haircuts and Hairstyling (3 Images) -->
+      <figure class="gallery-item" data-category="haircuts-styling">
+        <span class="gallery-item-badge">Haircuts &amp; Styling</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/haircut-styling-1.jpg') }}" 
+          alt="Precision french bob haircut with razor-sharp clean lines" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Haircuts &amp; Styling</span>
+          <div class="gallery-caption">Architectural French Bob Cut</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="haircuts-styling">
+        <span class="gallery-item-badge">Haircuts &amp; Styling</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/haircut-styling-2.jpg') }}" 
+          alt="Professional stylist texturizing flowing long layered hair" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Haircuts &amp; Styling</span>
+          <div class="gallery-caption">Feathered Layers &amp; Weightless Movement</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="haircuts-styling">
+        <span class="gallery-item-badge">Haircuts &amp; Styling</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/haircut-styling-3.jpg') }}" 
+          alt="Voluminous salon blowout with soft natural curls" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Haircuts &amp; Styling</span>
+          <div class="gallery-caption">Classic Silk Blowout &amp; Soft Waves</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 3. Hair Colour and Highlights (3 Images) -->
+      <figure class="gallery-item" data-category="hair-colour">
+        <span class="gallery-item-badge">Hair Colour</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/hair-colour-1.jpg') }}" 
+          alt="Sun-kissed honey balayage with multi-tonal dimensional light" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Hair Colour &amp; Highlights</span>
+          <div class="gallery-caption">Sun-Kissed Honey Balayage Artistry</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="hair-colour">
+        <span class="gallery-item-badge">Hair Colour</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/hair-colour-2.jpg') }}" 
+          alt="Rich chestnut gloss with warm caramel ribbons" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Hair Colour &amp; Highlights</span>
+          <div class="gallery-caption">Glossy Chestnut &amp; Warm Caramel Foils</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="hair-colour">
+        <span class="gallery-item-badge">Hair Colour</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/hair-colour-3.jpg') }}" 
+          alt="Cool beige blonde highlights with natural root melt" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Hair Colour &amp; Highlights</span>
+          <div class="gallery-caption">Cool Beige Blonde Foilayage &amp; Tone</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 4. Skincare and Facial Treatments (3 Images) -->
+      <figure class="gallery-item" data-category="skincare-facials">
+        <span class="gallery-item-badge">Skincare &amp; Facials</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/facial-skincare-1.jpg') }}" 
+          alt="Botanical clay mask application during rejuvenating spa facial" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Skincare &amp; Facials</span>
+          <div class="gallery-caption">Organic Botanical Nourishing Facial</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="skincare-facials">
+        <span class="gallery-item-badge">Skincare &amp; Facials</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/facial-skincare-2.jpg') }}" 
+          alt="Aesthetician performing gentle lymphatic facial drainage massage" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Skincare &amp; Facials</span>
+          <div class="gallery-caption">Lymphatic Drainage &amp; Glow Massage</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="skincare-facials">
+        <span class="gallery-item-badge">Skincare &amp; Facials</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/facial-skincare-3.jpg') }}" 
+          alt="Hydration face mist and soothing facial compress treatment" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Skincare &amp; Facials</span>
+          <div class="gallery-caption">Deep Hydration &amp; Skin Barrier Therapy</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 5. Bridal and Party Makeup (3 Images) -->
+      <figure class="gallery-item" data-category="bridal-makeup">
+        <span class="gallery-item-badge">Bridal &amp; Makeup</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/bridal-makeup-1.jpg') }}" 
+          alt="Radiant bridal makeup with glowing base and elegant hair styling" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Bridal &amp; Party Makeup</span>
+          <div class="gallery-caption">Couture Bridal Glamour &amp; Radiant Base</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="bridal-makeup">
+        <span class="gallery-item-badge">Bridal &amp; Makeup</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/bridal-makeup-2.jpg') }}" 
+          alt="Professional engagement eye makeup with champagne shimmer" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Bridal &amp; Party Makeup</span>
+          <div class="gallery-caption">Champagne Shimmer Engagement Makeup</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="bridal-makeup">
+        <span class="gallery-item-badge">Bridal &amp; Makeup</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/bridal-makeup-3.jpg') }}" 
+          alt="Sophisticated evening party makeup with defined features" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Bridal &amp; Party Makeup</span>
+          <div class="gallery-caption">Evening Occasion Makeup &amp; Contouring</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 6. Manicure and Pedicure (3 Images) -->
+      <figure class="gallery-item" data-category="manicure-pedicure">
+        <span class="gallery-item-badge">Manicure &amp; Pedicure</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/manicure-pedicure-1.jpg') }}" 
+          alt="Luxurious botanical foot soak with rose petals and sea salts" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Manicure &amp; Pedicure</span>
+          <div class="gallery-caption">Deluxe Rose Petal Spa Pedicure</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="manicure-pedicure">
+        <span class="gallery-item-badge">Manicure &amp; Pedicure</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/manicure-pedicure-2.jpg') }}" 
+          alt="Relaxing hand and arm massage during velvet manicure" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Manicure &amp; Pedicure</span>
+          <div class="gallery-caption">Velvet Manicure Hand Massage Ritual</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="manicure-pedicure">
+        <span class="gallery-item-badge">Manicure &amp; Pedicure</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/manicure-pedicure-3.jpg') }}" 
+          alt="Clean groomed natural nails with high-gloss nude finish" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Manicure &amp; Pedicure</span>
+          <div class="gallery-caption">Essential Gloss Manicure &amp; Cuticle Care</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 7. Nail Art (3 Images) -->
+      <figure class="gallery-item" data-category="nail-art">
+        <span class="gallery-item-badge">Nail Art</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/nail-art-1.jpg') }}" 
+          alt="Minimalist nude nails with champagne gold foil leaf accents" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Nail Art</span>
+          <div class="gallery-caption">Champagne Foil Accent Couture Nails</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="nail-art">
+        <span class="gallery-item-badge">Nail Art</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/nail-art-2.jpg') }}" 
+          alt="Pastel French tip nail art with modern minimalist lines" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Nail Art</span>
+          <div class="gallery-caption">Modern Pastel French Tip Art</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="nail-art">
+        <span class="gallery-item-badge">Nail Art</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/nail-art-3.jpg') }}" 
+          alt="Ultra-glossy gel polish with glazed mirror chrome reflection" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Nail Art</span>
+          <div class="gallery-caption">Glazed Mirror Chrome Gel Nails</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <!-- 8. Beauty Transformations (3 Images) -->
+      <figure class="gallery-item" data-category="transformations">
+        <span class="gallery-item-badge">Transformations</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/transformation-1.jpg') }}" 
+          alt="Complete beauty makeover with sculpted haircut and radiant makeup" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Beauty Transformations</span>
+          <div class="gallery-caption">Full Hair &amp; Complexion Transformation</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="transformations">
+        <span class="gallery-item-badge">Transformations</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/transformation-2.jpg') }}" 
+          alt="Dimensional balayage colour transformation from flat tone to dynamic sunlit blonde" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Beauty Transformations</span>
+          <div class="gallery-caption">Multidimensional Balayage Transformation</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+      <figure class="gallery-item" data-category="transformations">
+        <span class="gallery-item-badge">Transformations</span>
+        <img 
+          src="{{ url_for('static', filename='images/gallery/transformation-3.jpg') }}" 
+          alt="Elegantly draped bridal hairstyle transformation with fresh hair flowers" 
+          class="gallery-image"
+          loading="lazy"
+        />
+        <figcaption class="gallery-overlay">
+          <span class="gallery-category">Beauty Transformations</span>
+          <div class="gallery-caption">Bridal Floral Hair Styling &amp; Draping</div>
+          <span class="gallery-click-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg> Click to enlarge</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal with Next / Prev Navigation -->
+<div class="lightbox-modal" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Enlarged gallery view">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close lightbox">&times;</button>
+    
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev-btn" aria-label="Previous image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    
+    <div class="lightbox-media-wrapper">
+      <img src="" alt="" class="lightbox-img" id="lightbox-image" />
+      <div class="lightbox-meta">
+        <span class="lightbox-category" id="lightbox-category-text"></span>
+        <div class="lightbox-caption" id="lightbox-caption-text"></div>
+        <span class="lightbox-counter" id="lightbox-counter-text"></span>
+      </div>
+    </div>
+    
+    <button class="lightbox-nav lightbox-next" id="lightbox-next-btn" aria-label="Next image">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Call to action -->
+<section class="cta-banner-section">
+  <div class="container cta-banner-inner">
+    <span class="section-eyebrow gold">Your Transformation</span>
+    <h2>Inspired by What You See?</h2>
+    <p>Bring your inspiration photos or let our master stylists design a look uniquely tailored to your features and lifestyle.</p>
+    <div class="cta-banner-buttons">
+      <a href="{{ url_for('appointment') }}" class="btn btn-primary">Book an Appointment</a>
+      <a href="{{ url_for('services') }}" class="btn btn-secondary">Explore Services Menu</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

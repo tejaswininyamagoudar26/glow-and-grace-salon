@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}Appointment {{ appt.ref_number }} Details | Admin{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-ivory">
+  <div class="container" style="max-width: 900px;">
+    
+    <!-- Top breadcrumb / navigation -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary btn-sm">
+          ← Back to All Requests
+        </a>
+      </div>
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <span class="ref-pill" style="font-size: 1rem; padding: 0.4rem 1rem;">{{ appt.ref_number }}</span>
+        {% set meta = status_meta.get(appt.status, status_meta['pending']) %}
+        <span class="status-badge {{ appt.status }}" style="background:{{ meta.bg }}; color:{{ meta.color }}; font-size: 0.85rem; padding: 0.4rem 0.9rem;">
+          {{ meta.icon }} {{ meta.label }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Main Detail Card -->
+    <div class="admin-detail-card">
+      <div class="admin-detail-header">
+        <div>
+          <span class="section-eyebrow gold">Request Dossier</span>
+          <h2 style="margin-bottom: 0.25rem;">Appointment #{{ appt.ref_number }}</h2>
+          <p style="font-size: 0.9rem; color: var(--color-charcoal-400);">Received on {{ appt.created_at }}</p>
+        </div>
+      </div>
+
+      <!-- Information Grid -->
+      <div class="bs-grid" style="margin: 2rem 0; padding: 1.5rem; background: var(--color-beige-50); border-radius: var(--radius-md); border: var(--border-card);">
+        <div class="bs-item">
+          <div class="bs-label">Customer Name</div>
+          <div class="bs-value"><strong>{{ appt.name }}</strong></div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Mobile Number</div>
+          <div class="bs-value">
+            <a href="tel:{{ appt.phone }}" style="color: var(--color-gold-600); font-weight: 600;">{{ appt.phone }}</a>
+          </div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Email Address</div>
+          <div class="bs-value">
+            {% if appt.email %}
+              <a href="mailto:{{ appt.email }}" style="color: var(--color-charcoal-700);">{{ appt.email }}</a>
+            {% else %}
+              <span style="color: var(--color-charcoal-400); font-style: italic;">Not provided</span>
+            {% endif %}
+          </div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Service Category</div>
+          <div class="bs-value">{{ appt.category }}</div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Selected Ritual / Service</div>
+          <div class="bs-value"><strong>{{ appt.service }}</strong></div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Tariff / Price</div>
+          <div class="bs-value bs-price" style="color: var(--color-charcoal-900);">{{ appt.price }}</div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Estimated Duration</div>
+          <div class="bs-value">⏱ {{ appt.duration }}</div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Requested Date</div>
+          <div class="bs-value">📅 <strong>{{ appt.appt_date }}</strong></div>
+        </div>
+        <div class="bs-item">
+          <div class="bs-label">Requested Time Slot</div>
+          <div class="bs-value">🕐 <strong>{{ appt.appt_time }}</strong></div>
+        </div>
+      </div>
+
+      <!-- Customer Message / Notes -->
+      <div style="margin-bottom: 2rem; padding: 1.25rem 1.5rem; background: var(--color-white); border-radius: var(--radius-sm); border: 1px solid rgba(222, 203, 190, 0.6);">
+        <h4 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-charcoal-900);">Customer Special Requests &amp; Notes</h4>
+        {% if appt.message %}
+          <p style="font-size: 0.95rem; color: var(--color-charcoal-700); line-height: 1.6; margin: 0; white-space: pre-wrap;">{{ appt.message }}</p>
+        {% else %}
+          <p style="font-size: 0.9rem; color: var(--color-charcoal-400); font-style: italic; margin: 0;">No additional notes or special requests provided.</p>
+        {% endif %}
+      </div>
+
+      <!-- Update Status Form -->
+      <div style="padding: 2rem; background: var(--color-blush-50); border-radius: var(--radius-md); border: 1px solid var(--color-blush-200); margin-bottom: 2rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Update Appointment Status</h3>
+        <p style="font-size: 0.88rem; color: var(--color-charcoal-600); margin-bottom: 1.5rem;">Manage the workflow for this booking request. Changes take effect immediately.</p>
+        
+        <form method="POST" action="{{ url_for('admin_appointment_detail', appt_id=appt.id) }}">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="status">Appointment Status *</label>
+              <select id="status" name="status" required style="background: var(--color-white);">
+                {% for st in statuses %}
+                {% set st_meta = status_meta.get(st) %}
+                <option value="{{ st }}" {% if appt.status == st %}selected{% endif %}>
+                  {{ st_meta.icon }} {{ st_meta.label }}
+                </option>
+                {% endfor %}
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="admin_note">Internal Staff Notes</label>
+              <input type="text" id="admin_note" name="admin_note" 
+                     value="{{ appt.admin_note or '' }}" 
+                     placeholder="e.g. Called guest, confirmed slot for 11:30 AM" 
+                     style="background: var(--color-white);" />
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center; margin-top: 1rem; flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary btn-sm">
+              Save Status &amp; Notes
+            </button>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary btn-sm">
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <!-- Danger Zone / Delete -->
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid rgba(222, 203, 190, 0.4); flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--color-charcoal-400);">Danger Zone</span>
+          <p style="font-size: 0.85rem; color: var(--color-charcoal-600); margin: 0;">Permanently remove this appointment record from database.</p>
+        </div>
+        <form method="POST" action="{{ url_for('admin_delete_appointment', appt_id=appt.id) }}" onsubmit="return confirm('Are you sure you want to permanently delete appointment {{ appt.ref_number }}? This action cannot be undone.');">
+          <button type="submit" class="btn btn-secondary btn-sm" style="color: #a45860; border-color: #eed0d3; background: #fff;">
+            🗑 Delete Request
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Confirmation | Glow &amp; Grace Luxury Salon{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-ivory">
+  <div class="container">
+    <div class="success-card">
+      <div class="success-icon-box">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+
+      <span class="section-eyebrow sage">Request Received</span>
+      <h2>Thank You for Reaching Out</h2>
+      <p>
+        Your submission has been warmly received by our concierge team. We are preparing our calendar and will connect with you shortly via phone or email to confirm all the details of your visit.
+      </p>
+
+      <div class="success-actions">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+          Return to Home
+        </a>
+        <a href="{{ url_for('services') }}" class="btn btn-primary">
+          Explore Services Menu
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
